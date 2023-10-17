@@ -70,16 +70,16 @@ if ($_SESSION['logged'] == 0) {
       <div @click="open = !open" class="relative border-b-4 border-transparent py-3" :class="{'.$html_user. ': open}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
         <div class="flex justify-center items-center space-x-3 cursor-pointer">
           <div class="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
-            <img src="https://images.unsplash.com/photo-1610397095767-84a5b4736cbd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="" class="w-full h-full object-cover">
+            <img src="'.$imgFile.'" alt="" class="w-full h-full object-cover">
           </div>
           <div class="font-semibold dark:text-white text-gray-900 text-lg">
-            <div class="cursor-pointer">Hasan Muhammad</div>
+            <div class="cursor-pointer">'.$_SESSION['user'].'</div>
           </div>
         </div>
         <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5">
           <ul class="space-y-3 dark:text-white">
             <li class="font-medium">
-              <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
+              <a href="index.php?pg=user" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
                 <div class="mr-3">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </div>
@@ -123,8 +123,8 @@ if ($_SESSION['logged'] == 0) {
             <div>
               <div class="overflow-hidden z-0 rounded-full relative p-3">
                 <form action="index.php?pg=sanpham" method="post" class="relative flex z-50 bg-white rounded-full">
-                  <input name="result" type="text" placeholder="Nhập từ khóa" class="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none">
-                  <button name="timkiem" type="submit" class="bg-indigo-500 text-white rounded-full font-semibold px-8 py-4 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none">Search</button>
+                  <input name="result" type="text" placeholder="Nhập từ khóa" class="rounded-full flex-1 py-2 px-2 text-gray-700 focus:outline-none">
+                  <button name="timkiem" type="submit" class="bg-indigo-500 text-white rounded-full font-semibold  hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none px-2 ">Search</button>
                  </form>
                  
                 <div class="glow glow-1 z-10 bg-pink-400 absolute"></div>

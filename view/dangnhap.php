@@ -1,14 +1,4 @@
 
-    <?php
-        if ($_SESSION['wrong'] == 1) {
-          echo '
-          <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mx-auto mt-8" role="alert">
-          <p class="font-bold">Sai tài khoản hoặc mật khẩu</p>
-          <p>Vui lòng kiểm tra lại thông tin đăng nhập!</p>
-         </div>
-          ';
-        }
-?>
 
  <section class="bg-gray-50 dark:bg-gray-900">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

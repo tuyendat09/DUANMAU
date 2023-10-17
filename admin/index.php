@@ -108,12 +108,12 @@ ob_start();
             case 'users':
                 require_once('public/users.php');
                 break;
+                // THEM CATA
              case 'add':
              if(isset($_POST['add'])) {
                 $name = $_POST['name'];
                 $tb = danhmuc_insert($name);
                 $dsdm= danhmuc_all();
-
                 header('location: index.php?page=categories');
              }
 
@@ -132,6 +132,7 @@ ob_start();
                     }
                 include_once('public/updatedmform.php');
                 break;
+                // UPDATE CATA
             case 'updated' :
                 // if(isset($_GET['updated'])) {
                     $id = $_POST['id'];

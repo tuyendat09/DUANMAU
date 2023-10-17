@@ -32,10 +32,13 @@
 <script>
 tailwind.config = {
     corePlugins: {
-    container: false,
+    container: true,
   },
 
       theme: {
+        container: {
+            center:true,
+        },
         extend: {
           colors: {
             main: '#f9e2d0',

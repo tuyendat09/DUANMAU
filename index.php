@@ -17,7 +17,9 @@ if (!isset($_SESSION['avatar'])) {
     $_SESSION['avatar'] = "";
 }
 
-
+if (isset($_SESSION['registerDone'])) {
+    $_SESSION['registerDone'] = 0;
+}
 
 // $_SESSION['cart'] = [];
 
@@ -83,7 +85,7 @@ if (!isset($_SESSION['avatar'])) {
                     $iddm=$_GET['iddm'];
                 }
 
-                if(isset($_POST['timkiem']) && ($_POST['timkiem'])) {
+                if(isset($_POST['timkiem'])) {
                     $result = $_POST['result'];
                     
                 } else {
@@ -147,6 +149,7 @@ if (!isset($_SESSION['avatar'])) {
 
                   } else {
                       $userRegister = userInsert($username,$password,0,0);
+                      $_SESSION['registerDone'] = 1;
                       header('location: index.php?pg=dangky');
                   }
                 }
@@ -154,38 +157,41 @@ if (!isset($_SESSION['avatar'])) {
             case 'logout' :
                     $_SESSION['logged'] = 0;
                     $_SESSION['user'] = "";
+                    $_SESSION['avatar'] = "";
+
                     header('location: index.php');
              case 'user': 
                 include "view/user.php";
                 break;
-             case 'updateuser': 
-                if(isset($_POST['updateuser']) && isset($_FILES['avatar'])) {
-                    $username = $_POST['username'];
-                    $password = $_POST['password'];
-                    $name = $_POST['name'];
-                    $email = $_POST['email'];
-                    $avatar = $_FILES['avatar']['name'];
-                    userUpdate($username,$name,$password,$avatar,$email);
-                    // UPLOAD TO HOST
-                    $todir = './'.PATH_IMG.'users/';
-                    // chuyển hình vào upload/imgs/users
-                    move_uploaded_file( $_FILES['avatar']['tmp_name'],
-                     $todir . basename($_FILES['avatar']['name'] ));
-                    //  Xóa hình cũ
-                     // LẤY HÌNH CŨ
-                     $old_img = $_POST['old_img'];
-                    // Đường dẫn hình cũ
-                    $img_file = './'.PATH_IMG.'users/'.$old_img;
-                    // CHECK xem có tồn tại k
-                    if(file_exists($img_file)) {
-                        unlink($img_file);
+
+                case 'updateuser': 
+                    if(isset($_POST['updateuser']) && isset($_FILES['avatar'])) {
+                        $username = $_POST['username'];
+                        $password = $_POST['password'];
+                        $name = $_POST['name'];
+                        $email = $_POST['email'];
+                        $avatar = $_FILES['avatar']['name'];
+                        // UPLOAD TO HOST
+                        $todir = './'.PATH_IMG.'users/';
+                        // chuyển hình vào upload/imgs/users
+                        move_uploaded_file( $_FILES['avatar']['tmp_name'],
+                         $todir . basename($_FILES['avatar']['name'] ));
+                        //  Xóa hình cũ
+                         // LẤY HÌNH CŨ
+                         $old_img = $_POST['old_img'];
+                        // Đường dẫn hình cũ
+                        $img_file = './'.PATH_IMG.'users/'.$old_img;
+                        // CHECK xem có tồn tại k
+                        if(file_exists($img_file)) {
+                            unlink($img_file);
+                        }
+                        // DELETE FORM HOST
+                        userUpdate($username,$name,$password,$avatar,$email);
+                        $_SESSION['avatar'] = $avatar;
+                        header('location: index.php?pg=user');
                     }
-                    // DELETE FORM HOST
-                    header('location: index.php?pg=user');
+                    break;
 
-
-                }
-                break;
             default:
                 include "view/home.php";
                 break;

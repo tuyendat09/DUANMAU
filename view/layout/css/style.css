@@ -100,3 +100,7 @@ transform: translate(-10%, -10%) scale(1);
 transform: translate(10%, -10%) scale(1);
 }
 }
+
+li {
+    list-style: none;
+}
