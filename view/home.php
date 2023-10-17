@@ -1,44 +1,28 @@
 <?php
-// echo $_SESSION['logged'];
-$html_allsp_hot_cofe = '';
-foreach ($all_spBest_cofe as $sp) {
-    extract($sp);
-    $linkct = 'index.php?pg=chitiet&id=' . $id;
-    $html_allsp_hot_cofe .= '<div class="box25 mr15">
-                                <a href="' . $linkct . '">
-                                <img src="view/layout/images/' . $img . '" alt="">
-                                <p class="text-center mt-4 text-second font-bold">'.$name.'</p>
-                                <span class="price text-second ">' . number_format($price,3) . ' đ</span>
-                                </a>
-                                <form action="index.php?pg=addcart" method="post">
-                                <input type="hidden" name="name" value="'.$name.'">
-                                <input type="hidden" name="img" value="'.$img.'">
-                                <input type="hidden" name="price" value="'.$price.'">
-                                <button class="p-2 hover:bg-second bg-opacity-0 border-2 border-second transition duration-300 hover:text-main text-second font-bold" type="submit" name="addcart" >Đặt hàng</button>
-                                </form>
-                        </div>';
-}
-
-
 $html_iPhone_sale = '';
 foreach ($dssp_sale_iPhone as $sp) {
     extract($sp);
     $linkct = 'index.php?pg=chitiet&id=' . $id;
     if ($bestseller == 1) {
-        $best = '<div class="best"></div>';
+        $best = '<div class="absolute text-white  text-center  rounded-xl top-0 h-8 w-16 bg-black">HOT</div>';
     } else {
         $best = '';
     }
     $html_iPhone_sale .= '
     <a href="'.$linkct.'">
-    <div class="max-w-xs rounded-md overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer relative">
-        <div>
-            <img src="./'.PATH_IMG.''.$img.'" alt="" />
+        <div class="max-w-xs rounded-md overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer relative">
+        '. $best .'
+        <div style="height:280px;">
+            <img class="object-contain h-full"src="./'.PATH_IMG.''.$img.'" alt="" />
           </div>
           <div class="py-4 px-4 bg-white">
               <h3 class="text-lg font-semibold text-gray-600">'.$name.'</h3>
               <div class="flex justify-between items-center mt-4">
-              <p class="text-lg font-thin">'.number_format($price,3).' đ</p>
+              <div>
+              <span class="block text-lg font-semibold">'.number_format($saleprice,3).' đ</span>
+              <del class="block text-lg font-thin">'.number_format($price,3).' đ</del>
+              </div>
+
               <form action="index.php?pg=addcart" method="post">
               <input type="hidden" name="name" value="'.$name.'">
               <input type="hidden" name="img" value="'.$img.'">
@@ -61,9 +45,11 @@ foreach ($dssp_best as $sp) {
 
     <a href="'.$linkct.'">
     <div class="max-w-xs rounded-md overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer relative">
-        <div>
-            <img src="./'.PATH_IMG.''.$img.'" alt="" />
-          </div>
+  <div class="absolute text-white  text-center  rounded-xl top-0 h-8 w-16 bg-black">HOT</div>
+
+    <div style="height:280px;">
+    <img class="object-contain h-full"src="./'.PATH_IMG.''.$img.'" alt="" />
+  </div>
           <div class="py-4 px-4 bg-white">
               <h3 class="text-lg font-semibold text-gray-600">'.$name.'</h3>
               <div class="flex justify-between items-center mt-4">
@@ -88,7 +74,7 @@ foreach ($dssp_view as $sp) {
     $linkct = 'index.php?pg=chitiet&id=' . $id;
 
     if ($bestseller == 1) {
-        $best = '<div class="best"></div>';
+      $best = '<div class="absolute text-white  text-center  rounded-xl top-0 h-8 w-16 bg-black">HOT</div>';
     } else {
         $best = '';
     }
@@ -96,9 +82,10 @@ foreach ($dssp_view as $sp) {
 
     <a href="'.$linkct.'">
     <div class="max-w-xs rounded-md overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer relative">
-        <div>
-            <img src="./'.PATH_IMG.''.$img.'" alt="" />
-          </div>
+    '.$best.'
+    <div style="height:280px;">
+    <img class="object-contain h-full"src="./'.PATH_IMG.''.$img.'" alt="" />
+  </div>
           <div class="py-4 px-4 bg-white">
               <h3 class="text-lg font-semibold text-gray-600">'.$name.'</h3>
               <div class="flex justify-between items-center mt-4">
@@ -149,7 +136,7 @@ foreach ($dssp_view as $sp) {
 
 <div class="">
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900">iPhone mới ra mắt</h2>
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900">iPhone SALE</h2>
     <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       <!-- SINGLE -->
     <?=$html_iPhone_sale?>

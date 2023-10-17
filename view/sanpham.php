@@ -25,8 +25,8 @@ foreach ($dssp as $sp) {
 
         <a href="' . $linkct . '">
         <div class="max-w-xs rounded-md overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer relative">
-            <div>
-                <img src="./' . PATH_IMG . '' . $img . '" alt="" />
+              <div style="height:280px;">
+                <img class="h-full object-contain"src="./' . PATH_IMG . '' . $img . '" alt="" />
               </div>
               <div class="py-4 px-4 bg-white">
                   <h3 class="text-lg font-semibold text-gray-600">' . $name . '</h3>

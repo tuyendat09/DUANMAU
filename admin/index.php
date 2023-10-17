@@ -43,16 +43,19 @@ ob_start();
 
                     $old_img = $_POST['old_img'];
                     $todir = '../'.PATH_IMG;
-                    // chuyển hình vào upload/imgs
-                    move_uploaded_file( $_FILES['my_img']['tmp_name'],
-                     $todir . basename($_FILES['my_img']['name'] ));
-                    //  Xóa hình cũ
-                    // Đường dẫn hình cũ
-                    $img_file = '../'.PATH_IMG.$old_img;
-                    // CHECK xem có tồn tại k
-                    if(file_exists($img_file)) {
-                        unlink($img_file);
-                    }
+                        // UPLOAD TO HOST
+                        // chuyển hình vào upload/imgs/users
+                      move_uploaded_file( $_FILES['avatar']['tmp_name'],
+                       $todir . basename($_FILES['my_img']['name'] ));
+                        //  Xóa hình cũ
+                         // LẤY HÌNH CŨ
+                         $old_img = $_POST['old_img'];
+                        // Đường dẫn hình cũ
+                        $img_file = './'.PATH_IMG.$old_img;
+                        // CHECK xem có tồn tại k
+                        if(file_exists($img_file)) {
+                            // unlink($img_file);
+                        }
                     hang_hoa_update($idsp,$name,$img,$price,$saleprice,$des,$sale,$bestseller,$iddm);
                     header('location: index.php?page=products');
 

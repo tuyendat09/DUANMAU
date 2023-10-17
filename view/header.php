@@ -1,17 +1,24 @@
 <?php
-$imgFile = PATH_IMG.'users/'.$_SESSION['avatar'];
+if(!$_SESSION['user']) {
+  $imgFile = "";
+} else {
+$imgFile = PATH_IMG.'users/'.$_SESSION['user']['avatar'];
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+  
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffe House</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script src="https://kit.fontawesome.com/e5ff98b392.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="view/layout/css/style.css">
 </head>
 
@@ -65,15 +72,15 @@ if ($_SESSION['logged'] == 0) {
 }  else {
 
     echo '
-    <div class="bg-gray-200 flex justify-center items-center dark:bg-gray-500">
-  <div x-data="{ open: false }" class="bg-white dark:bg-gray-800 w-64  shadow flex justify-center items-center">
+    <div class="bg-gray-200 flex justify-center items-center dark:bg-gray-500 z-10 mt-4">
+  <div x-data="{ open: false }" class="bg-white dark:bg-gray-800 w-64  shadow flex justify-center items-center z-99">
       <div @click="open = !open" class="relative border-b-4 border-transparent py-3" :class="{'.$html_user. ': open}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
         <div class="flex justify-center items-center space-x-3 cursor-pointer">
           <div class="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
             <img src="'.$imgFile.'" alt="" class="w-full h-full object-cover">
           </div>
           <div class="font-semibold dark:text-white text-gray-900 text-lg">
-            <div class="cursor-pointer">'.$_SESSION['user'].'</div>
+            <div class="cursor-pointer">'.$_SESSION['user']['username'].'</div>
           </div>
         </div>
         <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5">
