@@ -2,7 +2,7 @@
 if(!$_SESSION['user']) {
   $imgFile = "";
 } else {
-$imgFile = PATH_IMG.'users/'.$_SESSION['user']['avatar'];
+  $imgFile = PATH_IMG.'users/'.$_SESSION['user']['avatar'];
 }
 
 ?>
@@ -23,35 +23,11 @@ $imgFile = PATH_IMG.'users/'.$_SESSION['user']['avatar'];
 </head>
 
 <body class="">
-    <div class="containerfull padd20 bg-second hidden ">
-        <div class="container flex justify-between items-center">
-            <div class="logo"><img src="view/layout/images/logo-bahozone-03-icon-h80.png" height="40" alt=""></div>
-            <div class="flex justify-between">
-                <div class="search">
-                    <form action="index.php?pg=sanpham" method="post">
-                        <input class="border-2 rounded-sm px-2" type="text" name="result" placeholder="Nhập từ khóa tìm kiếm">
-                        <input class="border-2 rounded-sm px-4 hover:bg-main font-bold border-main hover:text-second text-white transition duration-300" type="submit" value="Tìm" name="timkiem">
-                    </form>
-                </div>
-            </div>
-            <ul class="site_link flex items-center">
-                <li>
-                    <a class="font-bold  text-main hover:text-white transition duration-300 mx-4" href="index.php">TRANG CHỦ</a>
-                </li>
-                <li>
-                    <a class="text-main hover:text-white transition duration-300 mx-4 font-bold " href="index.php?pg=sanpham">SẢN PHẨM</a>
-                </li>
-
-
-            </ul>
-        </div>
-    </div>
-
     <header>
   <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
       <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <a href="index.php" class="flex items-center">
-              <img src="https://png.pngtree.com/template/20190928/ourmid/pngtree-smartphone-shop-sale-logo-design-image_312693.jpg" class="mr-3 h-6 sm:h-9 h-16 w-20 object-cover" alt="DatShop Logo" />
+              <img src="view/layout/images/logo.png" class="mr-3 h-6 sm:h-9 h-16 w-20 object-cover" alt="DatShop Logo" />
               <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">DatShop</span>
           </a>
           <div class="flex items-center lg:order-2">

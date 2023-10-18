@@ -2,15 +2,15 @@
 $flag_html = "";
 
 if (isset($_GET['dup']) &&  ($_GET['dup'] == 1)) {
-  $flat_html .= '
+  $flag_html .= '
   <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mx-auto mt-8" role="alert">
-  <p class="font-bold">Tên đặt nhập đã được sử dụng</p>
+  <p class="font-bold">Tên đăng nhập đã tồn tại</p>
 </div>
   ';
-} else {
+} else if (isset($_GET['dup'])) {
   $flag_html .= '
- <div class="bg-green-100 border-l-4 border-orange-500 text-orange-700 p-4 mx-auto mt-8" role="alert">
- <p class="font-bold">Tên đặt nhập đã được sử dụng</p>
+ <div class="bg-green-100 border-l-4 border-orange-500 text-black p-4 mx-auto mt-8" role="alert">
+ <p class="font-bold">Đăng ký thành công</p>
 </div>
  ';
 }
@@ -25,6 +25,7 @@ if (isset($_GET['dup']) &&  ($_GET['dup'] == 1)) {
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
           <img class="mx-auto h-40 w-auto" src="https://png.pngtree.com/template/20190928/ourmid/pngtree-smartphone-shop-sale-logo-design-image_312693.jpg" alt="Your Company">
         </div>
+        <?=$flag_html?>
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
           Create and account
         </h1>
@@ -54,7 +55,7 @@ if (isset($_GET['dup']) &&  ($_GET['dup'] == 1)) {
           </div>
           <button type="submit" name="register" class="w-full text-black border-2 border-black bg-prim hover:bg-black hover:text-white transition duration-300 ary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Tạo tài khoản</button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Đã có tài khoản? <a href="#" class="font-medium text-zinc-500 hover:text-black transition hover:underline dark:text-primary-500">Đăng nhập</a>
+            Đã có tài khoản? <a href="index.php?pg=dangnhap" class="font-medium text-zinc-500 hover:text-black transition hover:underline dark:text-primary-500">Đăng nhập</a>
           </p>
         </form>
       </div>

@@ -3,7 +3,7 @@
     <div class="w-full max-w-screen-xl mx-auto md:py-8">
         <div class="sm:flex sm:items-center sm:justify-between">
             <a href="index.php" class="flex items-center mb-4 sm:mb-0">
-                <img src="https://png.pngtree.com/template/20190928/ourmid/pngtree-smartphone-shop-sale-logo-design-image_312693.jpg" class="h-8 mr-3" alt="Flowbite Logo" />
+            <img src="view/layout/images/logo.png" class="mr-3 h-6 sm:h-9 h-16 w-20 object-cover" alt="DatShop Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">DatShop</span>
             </a>
             <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
@@ -16,7 +16,7 @@
             </ul>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span class="block text-sm text-white-500 text-white sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
+        <span class="block text-sm text-white-500 text-white sm:text-center dark:text-gray-400">© 2023 <a href="index.php" class="hover:underline">DatShop</a>. All Rights Reserved.</span>
     </div>
 </footer>
 

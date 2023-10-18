@@ -16,21 +16,24 @@ if (isset($_GET['wrong']) && ($_GET['wrong'] == 1)) {
 ?>
 
 <section class="bg-gray-50 dark:bg-gray-900">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
           <img class="mx-auto h-40 w-auto" src="https://png.pngtree.com/template/20190928/ourmid/pngtree-smartphone-shop-sale-logo-design-image_312693.jpg" alt="Your Company">
         </div>
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-          Create and account
+          Đăng nhập
         </h1>
         <form class="space-y-4 md:space-y-6" action="index.php?pg=login" method="POST">
           <div>
             <?= $wrong_html ?>
             <label for="email" class="mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên đăng nhập</label>
-            <input value="<?= $valueForWrong ?>" type="text" name="username" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Username" required="">
+            <input value="<?= $valueForWrong ?>" type="text" name="username" id="email" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Username" required="">
           </div>
+          <a href="index.php?pg=forgetPass" class="text-zinc-500 hover:text-black transtion duration-300">
+            Quên mật khẩu
+          </a>
           <div class="relative">
             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mật khẩu</label>
             <span class="show-pass absolute right-2 top-9 text-zinc-500 font-bold hover:text-black transition duration-300 cursor-pointer">Hiện</span>

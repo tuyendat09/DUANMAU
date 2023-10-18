@@ -1,35 +1,35 @@
 <?php
 session_start();
-
 ob_start();
 if(!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
-}
-
-if(!isset($_SESSION['wrong'])) {
-    $_SESSION['wrong'] = 0;
 }
 
 if(!isset($_SESSION['lastprice'])) {
     $_SESSION['lastprice'] = 0;
 }
 
-
-
 if(!isset($_SESSION['logged'])) {
     $_SESSION['logged'] = 0;
 }
 
 
-
-
-if (!isset($_SESSION['registerDone'])) {
-    $_SESSION['registerDone'] = 0;
-}
-
 if (!isset($_SESSION['user'])) {
-    $_SESSION['user'] = [];
+    $_SESSION['user'] = [
+        'username' => "",
+        'pass' => "",
+        'name' => "",
+        'avatar' => "",
+        'email' => "",
+        'location' => "",
+        'phone' => "",
+        'active' => "",
+        'role' => ""
+    ];
 }
+
+
+
 
 
 
@@ -46,6 +46,7 @@ if (!isset($_SESSION['user'])) {
     include 'dao/user.php';
     include 'dao/global.php';
     include "view/header.php";
+
 
     //data dành cho trang chủ
     $dssp_sale= get_dssp_sale(4);
@@ -125,11 +126,9 @@ if (!isset($_SESSION['user'])) {
                 if(isset($_POST['login'])) {
                     $username = $_POST['username'];
                     $password = $_POST['password'];
-                    
                     $userCheck = getUser($username,$password);
                    
                   if (is_array($userCheck)) {
-                    $_SESSION['wrong'] = 0;
                       if($userCheck['role'] == 1) {
                         header('location: admin/index.php');
                     } 
@@ -164,17 +163,44 @@ if (!isset($_SESSION['user'])) {
                     $username = $_POST['username'];
                     $password = $_POST['password'];
                     $userCheck = getUser($username,"");
-
+                    // kiểm tra user có tồn tại
                   if (is_array($userCheck)) {
                     header('location: index.php?pg=dangky&dup=1');
-                    ;
-
                   } else {
-                      $userRegister = userInsert($username,$password,0,0);
+                      $userRegister = userInsert($username,$password);
                       header('location: index.php?pg=dangky&dup=0');
                   }
                 }
             break;
+            case 'forgetPass' :
+                // Kiểm tra user có tồn tại hay k
+                if(isset($_POST['forgetSubmit'])) {
+                    $username = $_POST['username'];
+                    $userCheck = getUser($username,"");
+                    if (!is_array($userCheck)) {
+                        header('location: index.php?pg=forgetPass&wrong=1');
+                    } else {
+                        $_SESSION['user']['username'] = $username;
+                        header('location: index.php?pg=resetPass');
+
+                    }
+                }
+                include 'view/forgetpass.php';
+                break;
+
+            case 'resetPass' :
+                if(isset($_POST['resetSubmit'])) {
+                    $username = $_SESSION['user']['username'];
+                    $new_password = $_POST['password'];
+                    resetPass($new_password,$username);
+                    $_SESSION['user']['username'] = "";
+                    header('location: index.php?pg=dangnhap');
+                }
+                include 'view/resetPass.php';
+                break;
+
+                include 'view/forgetpass.php';
+                break;
             case 'logout' :
                 $_SESSION['user'] = [
                     'username' => "",
@@ -182,6 +208,8 @@ if (!isset($_SESSION['user'])) {
                     'name' => "",
                     'avatar' => "",
                     'email' => "",
+                    'location' => "",
+                    'phone' => "",
                     'active' => "",
                     'role' => ""
                 ];
@@ -285,6 +313,5 @@ if (!isset($_SESSION['user'])) {
                 break;
         }
     }
-    
 
     include "view/footer.php";

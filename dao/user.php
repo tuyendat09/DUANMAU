@@ -19,11 +19,11 @@ function checkUser($user)
 }
 
 
-function userInsert($username, $pass, $active, $role)
+function userInsert($username, $pass)
 {
     $sql = "INSERT INTO khachhang(username, password, active, role) 
     VALUES (?,?,?,?)";
-    pdo_execute($sql, $username, $pass, $active, $role);
+    pdo_execute($sql, $username, $pass, 0,0);
 }
 
 
@@ -31,6 +31,11 @@ function userUpdate($username, $name, $pass, $avatar ,$email,$location,$phone)
 {
     $sql = "UPDATE khachhang SET name=?,password=? ,avatar=?,email=?,location=?,phone=? WHERE username=?";
     pdo_execute($sql, $name, $pass, $avatar, $email,$location ,$phone ,$username);
+}
+
+function resetPass($password,$username) {
+    $sql = "UPDATE khachhang SET password=? WHERE username=?";
+    pdo_execute($sql, $password,$username);
 }
 
 // function userUpdate($username, $pass, $name, $avatar, $email) {
