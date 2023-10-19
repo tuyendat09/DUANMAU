@@ -1,6 +1,5 @@
 <?php
 $imgFile = PATH_IMG . 'users/' . $_SESSION['user']['avatar'];
-echo var_dump($_SESSION['user']);
 ?>
 
 
@@ -12,15 +11,10 @@ echo var_dump($_SESSION['user']);
 
 <div class="bg-gray-200 min-h-screen pb-24 pt-2">
   <div class="container mx-auto max-w-3xl mt-8">
-
-    <!--     @if (session('alert'))
-          <p>{{ session('alert') }}</p>
-    @endif -->
-
     <h1 class="text-2xl font-bold text-gray-700 px-6 md:px-0">Tài khoản</h1>
     <ul class="flex border-b border-gray-300 text-sm font-medium text-gray-600 mt-3 px-6 md:px-0">
       <li class="mr-8 text-gray-900 border-b-2 border-gray-800"><a href="#_" class="py-4 inline-block">Thông tin tài khoản</a></li>
-      <li class="mr-8 hover:text-gray-900"><a href="#_" class="py-4 inline-block">Bảo Mật</a></li>
+      <li class="mr-8 hover:text-gray-900"><a href="index.php?pg=orderedList" class="py-4 inline-block">Đơn hàng đã đặt</a></li>
       <li class="mr-8 hover:text-gray-900"><a href="#_" class="py-4 inline-block">Liên kết</a></li>
     </ul>
     <form action="index.php?pg=updateuser" method="POST" enctype="multipart/form-data">

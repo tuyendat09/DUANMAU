@@ -5,6 +5,7 @@ if(!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
+
 if(!isset($_SESSION['lastprice'])) {
     $_SESSION['lastprice'] = 0;
 }
@@ -13,9 +14,9 @@ if(!isset($_SESSION['logged'])) {
     $_SESSION['logged'] = 0;
 }
 
-
 if (!isset($_SESSION['user'])) {
     $_SESSION['user'] = [
+        'id' => NULL,
         'username' => "",
         'pass' => "",
         'name' => "",
@@ -47,6 +48,9 @@ if (!isset($_SESSION['user'])) {
     include 'dao/global.php';
     include "view/header.php";
 
+    // echo $IDBill;
+
+
 
     //data dành cho trang chủ
     $dssp_sale= get_dssp_sale(4);
@@ -61,27 +65,55 @@ if (!isset($_SESSION['user'])) {
     }else{
         switch ($_GET['pg']) {
             case 'addcart' :
-                if(isset($_POST['addcart'])) {
-                    $productName = $_POST['name'];
-                    $productImg = $_POST['img'];
-                    $productPrice = $_POST['price'];
-                    $productQuantity = 1;
-                    $product = [
-                        'name' => $productName,
-                        'img' => $productImg,
-                        'price' => $productPrice,
-                        'quantity' => $productQuantity,
-                    ];
-                    array_push($_SESSION['cart'],$product);
-                    
 
-                    header('location: index.php?pg=viewcart');
-                }
+                if (isset($_POST['addcart'])) {
+                    $img = $_POST['img'];
+                    $name = $_POST['name'];
+                    $price = $_POST['price'];
+                    $idProduct = $_POST['id'];
+                    $quantity = 1;
+                    // Kiểm tra xem có session cart chưa
+                    if (isset($_SESSION['cart']) && ($_SESSION['cart'] != "")) {
+                      $flag = false;
+                      // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+                      foreach ($_SESSION['cart'] as $key => $value) {
+                        // Nếu có rồi thì tăng số lượng lên 1
+                        if ($value['name'] == $name) {
+                          $_SESSION['cart'][$key]['quantity'] += 1;
+                          $flag = true;
+                        }
+                      }
+                      // Nếu chưa có thì thêm vào giỏ hàng
+                      if (!$flag) {
+                        $product = [
+                          "id" => $idProduct,
+                          "img" => $img,
+                          "name" => $name,
+                          "price" => $price,
+                          "quantity" => $quantity
+                        ];
+                        $_SESSION['cart'][] = $product;
+                      }
+                    }
+                    // Nếu chưa có session cart 
+                    else {
+                      $product = [
+                        "id" => $idProduct,
+                        "img" => $img,
+                        "name" => $name,
+                        "price" => $price,
+                        "quantity" => $quantity
+                      ];
+                      $_SESSION['cart'][] = $product;
+                    }
+                    header('Location: index.php?pg=viewcart');                 
+                  }
+                  
                 break;
                 case 'viewcart' :
-                 
                     if(isset($_GET['delID']) && ($_GET['delID'] >= 0)) {
                         $del_id = $_GET['delID'];
+
                         unset($_SESSION['cart'][$del_id]);
                         header('location: index.php?pg=viewcart');
                     } 
@@ -135,6 +167,7 @@ if (!isset($_SESSION['user'])) {
                       else {
                         $_SESSION['logged'] = 1;
                         $_SESSION['user'] = [
+                            'id' => $userCheck['id'],
                             'username' => $userCheck['username'],
                             'pass' => $userCheck['password'],
                             'name' => $userCheck['name'],
@@ -146,6 +179,7 @@ if (!isset($_SESSION['user'])) {
                             'phone' => $userCheck['phone']
 
                         ];
+
                         header('location: index.php');
                     }
                   } else {
@@ -203,6 +237,7 @@ if (!isset($_SESSION['user'])) {
                 break;
             case 'logout' :
                 $_SESSION['user'] = [
+                    'id' => NULL,
                     'username' => "",
                     'pass' => "",
                     'name' => "",
@@ -213,13 +248,14 @@ if (!isset($_SESSION['user'])) {
                     'active' => "",
                     'role' => ""
                 ];
+                $_SESSION['cart'] = [];
+                $_SESSION['lastprice'] = 0;
                 $_SESSION['logged'] = 0;
 
                     header('location: index.php');
              case 'user': 
                 include "view/user.php";
                 break;
-
                 case 'updateuser': 
                     if(isset($_POST['updateuser']) && isset($_FILES['avatar'])) {
                         $username = $_POST['username'];
@@ -288,13 +324,33 @@ if (!isset($_SESSION['user'])) {
                         header('location: index.php?pg=user');
                     }
                     break;
-
+                case 'orderedList':
+                    $idUser = $_SESSION['user']['id'];
+                    $order = orderedBill($idUser);
+                    include 'view/orderedList.php';
+                    break;
             case 'checkout': 
                 if (isset($_POST['submit'])) {
-                    $test = $_POST['radio'];
-                    $email = $_POST['name'];
+                    $idUser = $_SESSION['user']['id'];
+                    $ship = $_POST['radio'];
+                    $name = $_POST['name'];
+                    $email = $_POST['email'];
                     $location = $_POST['location'];
                     $phone = $_POST['phone'];
+                    $note = $_POST['note'];
+                    $total = $_SESSION['lastprice'];
+                    // NHET ZO BILL
+                    billInsert($total,curdate(),$note,$idUser,$name,$location,$ship,$phone,$email);
+                    // NHET SESSION CART ZO GIO HANG
+                    $IDBill = getIDBill()[0]['id'];
+                        foreach ($_SESSION['cart'] as $key) {
+                            extract($key);
+                            cartInsert($_SESSION['user']['id'],$id,$IDBill,$quantity);
+                        }
+
+                    $_SESSION['cart'] = [];
+                    $_SESSION['lastprice'] = 0;
+                    header('location: index.php?pg=ordered');
                   }
 
                   if(isset($_GET['delID']) && ($_GET['delID'] >= 0)) {
@@ -302,12 +358,22 @@ if (!isset($_SESSION['user'])) {
                     unset($_SESSION['cart'][$del_id]);
                     header('location: index.php?pg=checkout');
                 } 
+
+                // TRANG THANH TOAN
                 include_once "view/checkout.php";
                 break;
-
+                // TRANG THANH TOAN XONG
                 case 'ordered' :
                     include "view/ordered.php";
                     break;
+                // TRANG XEM LAI ORDER NEU LA USER
+                case 'orderDetail' :
+                    if(isset($_GET['id']) && ($_GET['id'])) {
+                        $id=$_GET['id'];
+                        $orderDetail = orderedBill_detail($id);
+                    }
+                        include "view/orderedDetail.php";
+                        break;
             default:
                 include "view/home.php";
                 break;

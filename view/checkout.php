@@ -1,4 +1,5 @@
 <?php
+
 if($_SESSION['logged'] == 1) {
   $customerName = $_SESSION['user']['name'];
   $location = $_SESSION['user']['location'];
@@ -16,7 +17,6 @@ if($_SESSION['logged'] == 1) {
 $keys = array_keys($_SESSION['cart']);
 $i = 0;
 $total_cart = 0;
-print_r($keys);
 
 
 
@@ -58,7 +58,7 @@ $salePrice =   $total_cart - $_SESSION['lastprice'];
 
 
 
-<form action="index.php?pg=ordered" method="post" class="my-8">
+<form action="index.php?pg=checkout" method="post" class="my-8">
   <div class="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
     <a href="#" class="text-2xl font-bold text-gray-800">DatShop</a>
     <div class="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
@@ -106,7 +106,7 @@ $salePrice =   $total_cart - $_SESSION['lastprice'];
       <p class="mt-8 text-lg font-medium">Shipping Methods</p>
       <form class="mt-5 grid gap-6" method="post" action="index.php">
         <div class="relative">
-          <input class="peer hidden" id="radio_1" type="radio" name="radio" value="Tại Cửa Hàng" checked />
+          <input class="peer hidden" id="radio_1" type="radio" name="radio" value="0" checked />
           <span class="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
           <label class="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_1">
             <img class="w-14 object-contain" src="/images/naorrAeygcJzX0SyNI4Y0.png" alt="" />
@@ -117,7 +117,7 @@ $salePrice =   $total_cart - $_SESSION['lastprice'];
           </label>
         </div>
         <div class="relative">
-          <input class="peer hidden" id="radio_2" type="radio" name="radio" value="Giao Hàng" />
+          <input class="peer hidden" id="radio_2" type="radio" name="radio" value="1" />
           <span class="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
           <label class="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_2">
             <img class="w-14 object-contain" src="/images/oG8xsl3xsOkwkMsrLGKM4.png" alt="" />
@@ -135,7 +135,7 @@ $salePrice =   $total_cart - $_SESSION['lastprice'];
       <div class="">
         <label for="email" class="mt-4 mb-2 block text-sm font-medium">Tên</label>
         <div class="relative">
-          <input value="<?=$customerName?>" type="text" name="name" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
+          <input required value="<?=$customerName?>" type="text" name="name" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your Name">
           <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
@@ -144,34 +144,29 @@ $salePrice =   $total_cart - $_SESSION['lastprice'];
         </div>
         <label for="card-holder" class="mt-4 mb-2 block text-sm font-medium">Địa chỉ</label>
         <div class="relative">
-          <input value="<?=$location?>" type="text" id="card-holder" name="location" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your full name here" />
+          <input required value="<?=$location?>" type="text" id="card-holder" name="location" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your full name here" />
           <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
             <img src="view/layout//images/location.png" class="h-4 w-4 text-gray-400" alt="">
           </div>
         </div>
         <label for="card-no" class="mt-4 mb-2 block text-sm font-medium">Email</label>
         <div class="relative">
-          <input value="<?=$email?>" type="text" id="email" name="email" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="your.email@gmail.com" />
+          <input required value="<?=$email?>" type="text" id="email" name="email" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="your.email@gmail.com" />
           <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
             <img src="view/layout/images/mail.png" class="h-4 w-4 text-gray-400" alt="">
           </div>
         </div>
         <label for="phone" class="mt-4 mb-2 block text-sm font-medium">Điện thoại</label>
         <div class="relative">
-          <input value="<?=$phone?>" placeholder="xxxx-xxx-xxx" type="text" name="phone" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
+          <input required value="<?=$phone?>" placeholder="xxxx-xxx-xxx" type="text" name="phone" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
           <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
             <img src="view/layout/images/smartphone.png" class="h-4 w-4 text-gray-400" alt="">
           </div>
         </div>
         
         <label for="card-no" class="mt-4 mb-2 block text-sm font-medium">Ghi chú</label>
-        <div class="relative">
           <textarea rows="4" placeholder="Ghi chú" type="text" name="note" class=" mt-4 w-full rounded-md border border-gray-200 px-4 py-3 pl-2 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
           </textarea>
-          <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-            <!-- <img src="view/layout/images/smartphone.png" class="h-4 w-4 text-gray-400" alt=""> -->
-          </div>
-        </div>
         <!-- Total -->
         <div class="mt-6 border-t border-b py-2">
           <div class="flex items-center justify-between">

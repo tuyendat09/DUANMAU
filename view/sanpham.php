@@ -36,6 +36,7 @@ foreach ($dssp as $sp) {
                   <input type="hidden" name="name" value="' . $name . '">
                   <input type="hidden" name="img" value="' . $img . '">
                   <input type="hidden" name="price" value="' . $price . '">
+                  <input type="hidden" name="id" value="'.$id.'">     
                   <input type="hidden" name="quantity" value="1">
                   <button class="py-2 px-2 hover:bg-black border-black border-2 transition duration-300 hover:text-white" type="submit" name="addcart" >Đặt hàng</button>
                   </form>

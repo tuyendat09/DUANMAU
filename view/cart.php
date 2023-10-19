@@ -1,17 +1,21 @@
 <?php
-echo $_SESSION['lastprice'];  
+
 $html_cart = '';
 $total_cart = 0;
 $keys = array_keys($_SESSION['cart']);
 $i = 1;
+
+if(count($_SESSION['cart']) == 0) {
+  $_SESSION['lastprice'] = 0;
+  } 
 
 foreach ($_SESSION['cart'] as $item) {
   extract($item);
   $link_delete = 'index.php?pg=viewcart&delID=' . $keys[$i-1];
   $i++;
 
-  $total_cart += $price;
   $total = $price * $quantity;
+  $total_cart += $total;
   $_SESSION['lastprice'] = $total_cart;
 
   $img_file = './' . PATH_IMG . $img;
@@ -30,7 +34,7 @@ foreach ($_SESSION['cart'] as $item) {
           <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </span>
         </div>
         <div class="flex items-center space-x-4">
-          <p class="text-sm">' . number_format($price, 3) . ' d</p>
+          <p class="text-sm">' . number_format($total, 3) . ' d</p>
           <a href="' . $link_delete . '">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />

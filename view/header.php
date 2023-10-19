@@ -15,7 +15,8 @@ if(!$_SESSION['user']) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffe House</title>
+    <title>DatShop</title>
+    <link rel="shortcut icon" type="image/x-icon" href="view/layout/images/logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <script src="https://kit.fontawesome.com/e5ff98b392.js" crossorigin="anonymous"></script>
@@ -24,11 +25,11 @@ if(!$_SESSION['user']) {
 
 <body class="">
     <header>
-  <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+  <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 -800">
       <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <a href="index.php" class="flex items-center">
               <img src="view/layout/images/logo.png" class="mr-3 h-6 sm:h-9 h-16 w-20 object-cover" alt="DatShop Logo" />
-              <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">DatShop</span>
+              <span class="self-center text-xl font-semibold whitespace-nowrap ">DatShop</span>
           </a>
           <div class="flex items-center lg:order-2">
           <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
@@ -42,25 +43,25 @@ $html_user .= "'border-indigo-700 transform transition duration-300'
 
 if ($_SESSION['logged'] == 0) {
     echo '
-    <a href="index.php?pg=dangnhap" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Đăng nhập</a>
-    <a href="index.php?pg=dangky" class="text-white bg-black hover:bg-black focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Đăng ký</a>
+    <a href="index.php?pg=dangnhap" class="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none ">Đăng nhập</a>
+    <a href="index.php?pg=dangky" class="text-white bg-black hover:bg-black focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none ">Đăng ký</a>
     ';
 }  else {
 
     echo '
-    <div class="bg-gray-200 flex justify-center items-center dark:bg-gray-500 z-10 mt-4">
-  <div x-data="{ open: false }" class="bg-white dark:bg-gray-800 w-64  shadow flex justify-center items-center z-99">
+    <div class="bg-gray-200 flex justify-center items-center -500 z-10 mt-4">
+  <div x-data="{ open: false }" class="bg-white -800 w-64  shadow flex justify-center items-center z-99">
       <div @click="open = !open" class="relative border-b-4 border-transparent py-3" :class="{'.$html_user. ': open}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
         <div class="flex justify-center items-center space-x-3 cursor-pointer">
-          <div class="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2  border-gray-900">
             <img src="'.$imgFile.'" alt="" class="w-full h-full object-cover">
           </div>
-          <div class="font-semibold dark:text-white text-gray-900 text-lg">
+          <div class="font-semibold  text-gray-900 text-lg">
             <div class="cursor-pointer">'.$_SESSION['user']['username'].'</div>
           </div>
         </div>
-        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5">
-          <ul class="space-y-3 dark:text-white">
+        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 -800 bg-white rounded-lg shadow border  mt-5">
+          <ul class="space-y-3 ">
             <li class="font-medium">
               <a href="index.php?pg=user" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
                 <div class="mr-3">
@@ -77,7 +78,7 @@ if ($_SESSION['logged'] == 0) {
                 Setting
               </a>
             </li>
-            <hr class="dark:border-gray-700">
+            <hr class="">
             <li class="font-medium">
               <a href="index.php?pg=logout" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
                 <div class="mr-3 text-red-600">
@@ -120,10 +121,13 @@ if ($_SESSION['logged'] == 0) {
           <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
               <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                   <li>
-                      <a href="index.php?pg=home" class="block py-2 pr-4 pl-3 text-black rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Trang Chủ</a>
+                      <a href="index.php?pg=home" class="block py-2 pr-4 pl-3 text-black rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 " aria-current="page">Trang Chủ</a>
                   </li>
                   <li>
-                      <a href="index.php?pg=sanpham" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Sản phẩm</a>
+                      <a href="index.php?pg=sanpham" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Sản phẩm</a>
+                  </li>
+                  <li>
+                      <a href="index.php?pg=viewcart" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Giỏ Hàng</a>
                   </li>
               </ul>
           </div>

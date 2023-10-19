@@ -1,5 +1,6 @@
 <?php
 $html_iPhone_sale = '';
+
 foreach ($dssp_sale_iPhone as $sp) {
     extract($sp);
     $linkct = 'index.php?pg=chitiet&id=' . $id;
@@ -26,7 +27,8 @@ foreach ($dssp_sale_iPhone as $sp) {
               <form action="index.php?pg=addcart" method="post">
               <input type="hidden" name="name" value="'.$name.'">
               <input type="hidden" name="img" value="'.$img.'">
-              <input type="hidden" name="price" value="'.$price.'">
+              <input type="hidden" name="price" value="'.$saleprice.'">
+              <input type="hidden" name="id" value="'.$id.'">
               <input type="hidden" name="quantity" value="1">
               <button class="py-2 px-2 hover:bg-black border-black border-2 transition duration-300 hover:text-white" type="submit" name="addcart" >Đặt hàng</button>
               </form>
@@ -58,6 +60,7 @@ foreach ($dssp_best as $sp) {
               <input type="hidden" name="name" value="'.$name.'">
               <input type="hidden" name="img" value="'.$img.'">
               <input type="hidden" name="price" value="'.$price.'">
+              <input type="hidden" name="id" value="'.$id.'">
               <input type="hidden" name="quantity" value="1">
               <button class="py-2 px-2 hover:bg-black border-black border-2 transition duration-300 hover:text-white" type="submit" name="addcart" >Đặt hàng</button>
               </form>
@@ -94,6 +97,7 @@ foreach ($dssp_view as $sp) {
               <input type="hidden" name="name" value="'.$name.'">
               <input type="hidden" name="img" value="'.$img.'">
               <input type="hidden" name="price" value="'.$price.'">
+              <input type="hidden" name="id" value="'.$id.'">
               <input type="hidden" name="quantity" value="1">
               <button class="py-2 px-2 hover:bg-black border-black border-2 transition duration-300 hover:text-white" type="submit" name="addcart" >Đặt hàng</button>
               </form>

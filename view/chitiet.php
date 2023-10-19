@@ -63,6 +63,7 @@
                                 <input type="hidden" name="name" value="<?=$name?>">
                                 <input type="hidden" name="img" value="<?=$img?>">
                                 <input type="hidden" name="price" value="<?=$price?>">
+                                <input type="hidden" name="id" value="<?=$id?>">
                                 <button class="p-2 hover:bg-second border-2 border-second text-second hover:text-main transition duration-300 hover:text-white" type="submit" name="addcart" >Đặt hàng</button>
                           </form>
                     </div>
