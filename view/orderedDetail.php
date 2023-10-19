@@ -13,15 +13,15 @@ for ($i=0; $i < count($orderDetail); $i++) {
     if($orderDetail[$i]['sale'] == 1) {
         $price_html =
          '
-        <p class="text-base  xl:text-lg leading-6">'.number_format($orderDetail[$i]['saleprice']).' <span class="text-red-300 line-through">'.number_format($orderDetail[$i]['price']).'</span></p>
+        <p class="text-base  xl:text-lg leading-6">'.number_format($orderDetail[$i]['saleprice'],2).' đ<span class="text-red-300 line-through">'.number_format($orderDetail[$i]['price'],2).' đ</span></p>
         ';
     } else {
         $price_html =
         '
-       <p class="text-base  xl:text-lg leading-6">'.number_format($orderDetail[$i]['price']).' d<span class=" hidden text-red-300 line-through">'.$orderDetail[$i]['price'].'</span></p>
+       <p class="text-base  xl:text-lg leading-6">'.number_format($orderDetail[$i]['price'],2).' đ<span class=" hidden text-red-300 line-through">'.$orderDetail[$i]['price'].'</span></p>
        ';
     }
-    $html_order_product = '
+    $html_order_product .='
     <div class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
     <div class="pb-4 md:pb-8 w-full md:w-40">
         <img class="w-full hidden md:block" src="'.$imgProductFile.'" alt="product img" />
@@ -47,7 +47,7 @@ for ($i=0; $i < count($orderDetail); $i++) {
             <div class="flex justify-start item-start space-y-2 flex-col">
                 <h1 class="text-3xl  lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Order #<?=$idOrder?></h1>
                 <p class="text-base font-medium leading-6 text-gray-600">
-                    <?=$order[0]['ngaydat']?>
+                    <?=$orderDetail[0]['ngaydat']?>
                 </p>
             </div> 
             <div class="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
@@ -109,7 +109,7 @@ for ($i=0; $i < count($orderDetail); $i++) {
                                 </div>
                             </div>
                             <div class="flex w-full justify-center items-center md:justify-start md:items-start">
-                                <button class="mt-6 md:mt-0 py-5 hover:bg-black  hover:text-white transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base font-medium leading-4 text-gray-800">Edit Details</button>
+                                <a href="index.php?pg=orderedList" class="text-center mt-6 md:mt-0 py-5 hover:bg-black  hover:text-white transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base font-medium leading-4 text-gray-800">Về trang chủ</a>
                             </div>
                         </div>
                     </div>

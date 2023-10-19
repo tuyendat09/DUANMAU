@@ -10,7 +10,7 @@ for ($i=0; $i < count($order); $i++) {
 $html_table_order .= '
 <tr>
 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-		<a href="index.php?pg=orderDetail&id='.$id.'">#'.$id.'</a>
+		<a class="text-black  bg-green-200 p-2 rounded-xl" href="index.php?pg=orderDetail&id='.$id.'">#'.$id.'</a>
 </td>
 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 '.$date.'

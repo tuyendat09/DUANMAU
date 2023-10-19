@@ -106,7 +106,7 @@ if ($_SESSION['logged'] == 0) {
           <div class="flex flex-col justify-center">
             <div>
               <div class="overflow-hidden z-0 rounded-full relative p-3">
-                <form action="index.php?pg=sanpham" method="post" class="relative flex z-50 bg-white rounded-full">
+                <form action="index.php?pg=sanpham" method="post" class="relative mb-0 flex z-50 bg-white rounded-full">
                   <input name="result" type="text" placeholder="Nhập từ khóa" class="rounded-full flex-1 py-2 px-2 text-gray-700 focus:outline-none">
                   <button name="timkiem" type="submit" class="bg-indigo-500 text-white rounded-full font-semibold  hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none px-2 ">Search</button>
                  </form>

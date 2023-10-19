@@ -28,7 +28,7 @@ if (!isset($_SESSION['user'])) {
         'role' => ""
     ];
 }
-
+echo var_dump($_SESSION['user']);
 
 
 
@@ -301,6 +301,7 @@ if (!isset($_SESSION['user'])) {
                         }
                         // CAP NHAT LAI SESSION
                         $_SESSION['user'] = [
+                            'id' => $_SESSION['user']['id'],
                             'username' => $username,
                             'pass' => $password,
                             'name' => $name,
